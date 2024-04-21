@@ -7,6 +7,12 @@
     z-index: -1;
   }
 
+  &-welcome-txt {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   &__container {
     height: 100vh;
     display: flex;
@@ -17,6 +23,14 @@
     &__type-animation {
       font-size: 70px;
       font-weight: bold;
+    }
+
+    &__qr-code {
+      > img {
+        height: 300px;
+        filter: brightness(90%);
+        z-index: -1;
+      }
     }
   }
 
@@ -180,23 +194,43 @@
 
 .mp-downloads {
   display: flex;
+  margin-top: 10%;
   flex-direction: column;
   align-items: center;
-  > h1 {
+
+  &__big-txt {
     color: black;
     font-weight: 900;
     font-size: 500%;
   }
 
-  > h2 {
+  &__mid-txt {
     color: black;
     font-weight: 700;
     font-size: 200%;
+  }
+
+  &__btn-container {
+    display: flex;
+    padding-block: 5%;
+    align-items: center;
+    gap: 100px;
+  }
+
+  &__button {
+    > img {
+      height: 70px;
+    }
+  }
+
+  &__separator {
+    border-right: 2px solid #e3e3e3;
   }
 }
 
 .mp-footer {
   display: flex;
+  padding: 0 2%;
 }
 
 .mp-italic {

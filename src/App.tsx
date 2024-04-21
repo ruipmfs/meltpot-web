@@ -1,6 +1,9 @@
 import './App.scss';
 import BackgroundVid from './assets/background-vid.mp4';
 import Logo from './assets/mp_logo_noname.png';
+import QRCode from './assets/mp_qr_code.png';
+import AppStoreBtn from './assets/app-store-badge.png';
+import PlayStoreBtn from './assets/google-play-badge.png';
 import Header from "./components/Header";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
@@ -37,15 +40,21 @@ function App() {
             {/* @ts-ignore*/}
             <Header changeLanguage={ updateLang } />
             <div className="mp-homepage__container">
-                <TypeAnimation className="mp-homepage__container__type-animation"
-                    style={{ whiteSpace: 'pre-line', height: '420', display: 'block', fontFamily: "'Oranienbaum', cursive" }}
-                    sequence={[
-                        `When was the last time you had a coffee with strangers?\nNever? We got you covered!`,
-                        2000,
-                        '',
-                    ]}
-                    repeat={Infinity}
-                />
+                <div className="mp-homepage-welcome-txt">
+                    <TypeAnimation
+                        className="mp-homepage__container__type-animation"
+                        style={{ whiteSpace: 'pre-line', display: 'block', fontFamily: "'Oranienbaum', cursive", height: '420px' }}
+                        sequence={[
+                            `You,\n5 Strangers,\n1 Coffee Spot,\nWhat are you waiting for?`,
+                            2000,
+                            '',
+                        ]}
+                        repeat={Infinity}
+                    />
+                    <a className="mp-homepage__container__qr-code" href="#downloads">
+                        <img src={QRCode} alt="QR Code"/>
+                    </a>
+                </div>
                 { !isScrolled && <a href="#about" className="mp-homepage__button"><FontAwesomeIcon icon={faChevronDown} beat style={{color: "#ffffff", height: 50, width: 50}} /></a> }
             </div>
             <div className="mp-about" id="about">
@@ -61,6 +70,12 @@ function App() {
             <div className="mp-bg-container">
                 <div className="mp-events" id="events">
                     <h1 style={{ color: '#ffffff' }}>{isPortuguese ? "Próximos Eventos" : "Next Events"}</h1>
+                    <p>Currently, we are doing events every Wednesday. The meeting hour may vary from event to event. Here are the places we are currently available:</p>
+                    <ul>
+                        <li>Leiria</li>
+                        <li>Caldas da Rainha</li>
+                    </ul>
+                    <p>More information available soon!</p>
                 </div>
             </div>
             <div className="mp-tc" id="t&c">
@@ -75,9 +90,17 @@ function App() {
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pulvinar sodales libero, non elementum ante sodales vel. Nullam sed eros sit amet nunc convallis consectetur mollis eu ipsum. Duis iaculis dui nec elementum tristique. Fusce suscipit ipsum sed gravida sollicitudin. Duis in neque eros. Vestibulum felis nibh, dignissim in elit eget, facilisis posuere leo. Aenean convallis maximus ex vel tempus. Nullam a eleifend dui. Duis pulvinar lacus ut massa dignissim, ut commodo turpis varius. Ut ultricies sed nisi vitae pretium.
                 </p>
             </div>
-            <div className="mp-downloads">
-                <h1>TEMPTED TO TRY OUR APP?</h1>
-                <h2>What are you waiting for?</h2>
+            <div className="mp-downloads" id="downloads">
+                <span className="mp-downloads__big-txt">EXCITED TO TRY OUR APP?</span>
+                <span className="mp-downloads__mid-txt">WHAT ARE YOU WAITING FOR?</span>
+                <div className="mp-downloads__btn-container">
+                    <a className="mp-downloads__button" href="https://www.apple.com/pt/app-store/" target="__blank">
+                        <img src={AppStoreBtn} alt="AppStore"></img>
+                    </a>
+                    <a className="mp-downloads__button" href="https://play.google.com/store/games?device=windows" target="__blank">
+                        <img src={PlayStoreBtn} alt="PlayStore"></img>
+                    </a>
+                </div>
             </div>
             <div className="mp-footer mp-bg-container">
                 <p>© {(new Date().getFullYear())} All Rights Reserved. Meltpot</p>
