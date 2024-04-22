@@ -62,9 +62,9 @@ const Header: React.FC<HeaderProps> = ({ changeLanguage }) => {
                     <a href="#events" onClick={ () => handleClick(!isOpen) }>Próximos Eventos</a>
                     <a href="#t&c" onClick={ () => handleClick(!isOpen) }>T&C</a>
                     <div className="lf-header__nav-lang">
-                        <button className="lf-bold" onClick={() => { changeLanguage(); setIsPortuguese(true); }}>PT</button>
+                        <button className={isPortuguese ? "lf-bold lf-header__nav-lang--selected" : "lf-bold"} onClick={() => { changeLanguage(); setIsPortuguese(true); }}>PT</button>
                         <span>|</span>
-                        <button className="lf-bold" onClick={() => { changeLanguage(); setIsPortuguese(false); }}>EN</button>
+                        <button className={!isPortuguese ? "lf-bold lf-header__nav-lang--selected" : "lf-bold"} onClick={() => { changeLanguage(); setIsPortuguese(false); }}>EN</button>
                     </div>
                 </nav>}
             </div>
@@ -80,9 +80,9 @@ const Header: React.FC<HeaderProps> = ({ changeLanguage }) => {
                     <a href="#events">{ isPortuguese ? "Próximos Eventos" : "Next Events"}</a>
                     <a href="#t&c">T&C</a>
                     <div className="lf-header__nav-lang">
-                        <button className="lf-bold" onClick={() => { changeLanguage(); setIsPortuguese(true); }}>PT</button>
+                        <button className={isPortuguese ? "lf-bold lf-header__nav-lang--selected" : "lf-bold"} onClick={() => { changeLanguage(); setIsPortuguese(true); }}>PT</button>
                         <span>|</span>
-                        <button className="lf-bold" onClick={() => { changeLanguage(); setIsPortuguese(false); }}>EN</button>
+                        <button className={!isPortuguese ? "lf-bold lf-header__nav-lang--selected" : "lf-bold"} onClick={() => { changeLanguage(); setIsPortuguese(false); }}>EN</button>
                     </div>
                 </nav>
             </div>

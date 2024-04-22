@@ -29,12 +29,21 @@
     &-lang {
       display: flex;
       gap: 4px;
+      font-weight: normal;
+
+      &--selected {
+        font-weight: bolder;
+      }
 
       > button {
         background: none;
         border: none;
         font-size: large;
         color: white;
+
+        &:hover {
+          font-weight: bolder;
+        }
       }
 
       > span {
