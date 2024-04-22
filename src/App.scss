@@ -183,6 +183,14 @@
   padding-top: 90px;
   padding-inline: 100px;
 
+  &__drip {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+  }
+
   > h1 {
     color: black;
   }
