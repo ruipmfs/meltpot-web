@@ -18,6 +18,7 @@ export const DeleteAccount = () => {
     const [visible, setVisible] = useState(false);
     const toast = useRef(null);
 
+    // @ts-ignore
     const isPortuguese = useSelector((state) => state.isPortuguese);
 
     const dispatch = useDispatch();
@@ -36,37 +37,33 @@ export const DeleteAccount = () => {
     window.addEventListener('resize', checkIsMobile);
 
     async function handleSubmit() {
-        let axiosConfig = {
-            baseURL: 'https://api.meltpot.pt/api/v1',
-            headers: {
-                'Content-Type': 'application/json',
-                //Authorization: `Bearer ${loginAuth}`,
-            },
-        };
-
         try {
-            const response = await axios.post('/auth/login', { email, password }, axiosConfig);
+            const response = await axios.post('/auth/login', { email, password }, {
+                baseURL: 'https://api.meltpot.pt/api/v1',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
             const token = response.data.token;
 
-            console.log(token);
-
-            axiosConfig = {
+            await axios.delete('/consumer', {
                 baseURL: 'https://api.meltpot.pt/api/v1',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`,
                 },
-            };
-
-            await axios.delete('/consumer', axiosConfig);
+            });
+            // @ts-ignore
             toast.current.show({ severity: 'success', summary: 'Deleted', detail: 'You have deleted your account', life: 3000 });
         } catch (err) {
+            // @ts-ignore
             toast.current.show({ severity: 'error', summary: 'Failed', detail:`${err?.response?.data?.message ?? 'Try again later'}`, life: 3000 });
         }
     }
 
     return (
         <div className="mp-delete-account">
+            {/*@ts-ignore*/}
             <Header changeLanguage={ updateLang } isLightMode />
             <div className="mp-delete-account__body">
                 {!isMobile && <img className="mp-delete-account__image" src={MeltpotLogoNegative} alt="Logo"/>}
@@ -86,7 +83,6 @@ export const DeleteAccount = () => {
                     </div>
                     <Toast ref={toast} />
                     <ConfirmDialog
-                        group="declarative"
                         visible={visible}
                         onHide={() => setVisible(false)}
                         message="Are you sure you want to proceed?"

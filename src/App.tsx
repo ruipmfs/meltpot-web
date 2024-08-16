@@ -45,17 +45,18 @@ function App() {
     const image = document.getElementById('slideImage');
 
     window.addEventListener('scroll', function() {
-        const imagePosition = image.getBoundingClientRect().top;
+        const imagePosition = image?.getBoundingClientRect().top;
         const screenPosition = window.innerHeight;
         console.log('image pos', imagePosition);
         console.log('screen pos', screenPosition);
         console.log('scroll pos', window.scrollY);
 
-        if (imagePosition < window.scrollY) {
-            image.classList.add('visible');
+        if ((imagePosition ?? 0) < window.scrollY) {
+            image?.classList.add('visible');
         }
     });
 
+    // @ts-ignore
     return (
         <div className="mp-homepage">
             <video autoPlay loop muted playsInline className="mp-homepage__background-vid">
@@ -67,7 +68,7 @@ function App() {
                 <div className="mp-homepage-welcome-txt">
                     <TypeAnimation
                         className="mp-homepage__container__type-animation"
-                        style={{ whiteSpace: 'pre-line', display: 'block', fontFamily: "'Oranienbaum', cursive", height: isMobile? '60px' : '420px', fontSize: isMobile && '200%'}}
+                        style={{ whiteSpace: 'pre-line', display: 'block', fontFamily: "'Oranienbaum', cursive", height: isMobile ? '60px' : '420px', fontSize: isMobile ? '200%' : '500%'}}
                         sequence={[
                             `You,\n5 Strangers,\n1 Coffee Spot,\nWhat are you waiting for?`,
                             2000,
