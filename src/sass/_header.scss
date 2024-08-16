@@ -69,6 +69,40 @@
     }
   }
 
+  &__image-delete {
+    height: 60%;
+    align-self: center;
+    padding-left: 1%;
+  }
+
+  &__options {
+    display: flex;
+    gap: 4px;
+    font-weight: normal;
+    align-self: center;
+    padding-right: 3%;
+
+
+    &--selected {
+      font-weight: bolder;
+    }
+
+    > button {
+      background: none;
+      border: none;
+      font-size: large;
+      color: black;
+
+      &:hover {
+        font-weight: bolder;
+      }
+    }
+
+    > span {
+      font-size: large;
+    }
+  }
+
   &__button {
     > svg {
       padding: 20px;

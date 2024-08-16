@@ -1,3 +1,7 @@
+@import "components/LocationCard";
+@import "components/Footer";
+@import "DeleteAccount";
+
 .mp-homepage {
   &__background-vid {
     position: absolute;
@@ -128,6 +132,12 @@
   > h1 {
     color: black;
   }
+
+  &__card-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+  }
 }
 
 .mp-contact {
@@ -252,6 +262,18 @@
   color: black;
 }
 
+#slideImage {
+  //width: 50%;
+  opacity: 0;
+ //transform: translateX(100%);
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+#slideImage.visible {
+  //transform: translateX(0%);
+  opacity: 1;
+}
+
 
 @media (min-aspect-ratio: 16/9) {
   .mp-homepage__background-vid {
@@ -276,10 +298,13 @@
 
 @media (max-width: 900px) {
   .mp-about {
+    padding-inline: 10px;
+
     &__container {
       display: grid;
       grid-template-columns: 1fr;
       grid-template-rows: 1fr 1fr;
+      margin: 0 10px;
   
       > img {
         width: 100%;
@@ -294,11 +319,23 @@
   }
 
   .mp-about {
+    height: auto;
+
     &__mentions {
       display: grid;
       grid-template-columns: 1fr;
       grid-template-rows: 1fr 1fr;
       width: 100%;
+    }
+  }
+
+  .mp-events {
+    padding-inline: 10px;
+    height: auto;
+
+    &__card-container {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
     }
   }
 
@@ -371,6 +408,25 @@
           }
         }
       }
+    }
+  }
+
+  .mp-tc {
+    padding-inline: 20px;
+  }
+
+  .mp-downloads {
+    &__big-txt {
+      font-size: 150%;
+    }
+
+    &__mid-txt {
+      font-size: 100%;
+    }
+
+    &__btn-container {
+      flex-direction: column;
+      gap: 20px;
     }
   }
 

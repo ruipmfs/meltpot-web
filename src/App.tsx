@@ -1,6 +1,6 @@
 import './App.scss';
 import BackgroundVid from './assets/background-vid.mp4';
-import Logo from './assets/mp_logo_noname.png';
+import Phone from './assets/phone_frame.png';
 import DripImg from './assets/drip.png';
 import QRCode from './assets/mp_qr_code.png';
 import AppStoreBtn from './assets/app-store-badge.png';
@@ -9,9 +9,12 @@ import Header from "./components/Header";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import { TypeAnimation } from "react-type-animation";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleLanguage } from './store';
+import LocationCard from "./components/LocationCard/LocationCard.tsx";
+import Leiria from "./assets/leiria.png";
+import Fatima from "./assets/fatima.png";
 
 function App() {
     // @ts-ignore
@@ -31,7 +34,27 @@ function App() {
         }
     }
 
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 900);
+
+    useEffect(() => {
+        window.innerWidth < 900 ? setIsMobile(true) : setIsMobile(false);
+    }, [window.innerWidth]);
+
     window.addEventListener('scroll', checkIsScrolled);
+
+    const image = document.getElementById('slideImage');
+
+    window.addEventListener('scroll', function() {
+        const imagePosition = image.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight;
+        console.log('image pos', imagePosition);
+        console.log('screen pos', screenPosition);
+        console.log('scroll pos', window.scrollY);
+
+        if (imagePosition < window.scrollY) {
+            image.classList.add('visible');
+        }
+    });
 
     return (
         <div className="mp-homepage">
@@ -44,7 +67,7 @@ function App() {
                 <div className="mp-homepage-welcome-txt">
                     <TypeAnimation
                         className="mp-homepage__container__type-animation"
-                        style={{ whiteSpace: 'pre-line', display: 'block', fontFamily: "'Oranienbaum', cursive", height: '420px' }}
+                        style={{ whiteSpace: 'pre-line', display: 'block', fontFamily: "'Oranienbaum', cursive", height: isMobile? '60px' : '420px', fontSize: isMobile && '200%'}}
                         sequence={[
                             `You,\n5 Strangers,\n1 Coffee Spot,\nWhat are you waiting for?`,
                             2000,
@@ -52,31 +75,30 @@ function App() {
                         ]}
                         repeat={Infinity}
                     />
-                    <a className="mp-homepage__container__qr-code" href="#downloads">
+                    {!isMobile && <a className="mp-homepage__container__qr-code" href="#downloads">
                         <img src={QRCode} alt="QR Code"/>
-                    </a>
+                    </a>}
                 </div>
                 { !isScrolled && <a href="#about" className="mp-homepage__button"><FontAwesomeIcon icon={faChevronDown} beat style={{color: "#ffffff", height: 50, width: 50}} /></a> }
             </div>
             <div className="mp-about" id="about">
-                <h1>{isPortuguese ? "Quem Somos?" : "Who are we?"}</h1>
+                <h1>{isPortuguese ? "Como funciona?" : "How does it work?"}</h1>
                 <div className="mp-about__container">
                     <div className="mp-about__container--text">
                         <p>{ isPortuguese ? "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mollis orci sed nibh accumsan vehicula. Pellentesque in ipsum enim. Sed a accumsan libero, vitae molestie dolor. Phasellus sapien lacus, blandit eget erat maximus, imperdiet rhoncus neque. Etiam viverra quam in neque condimentum egestas. Nullam euismod massa vel dolor imperdiet viverra." : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mollis orci sed nibh accumsan vehicula. Pellentesque in ipsum enim. Sed a accumsan libero, vitae molestie dolor. Phasellus sapien lacus, blandit eget erat maximus, imperdiet rhoncus neque. Etiam viverra quam in neque condimentum egestas. Nullam euismod massa vel dolor imperdiet viverra."}</p>
                         <p>{ isPortuguese ? "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mollis orci sed nibh accumsan vehicula. Pellentesque in ipsum enim. Sed a accumsan libero, vitae molestie dolor. Phasellus sapien lacus, blandit eget erat maximus, imperdiet rhoncus neque. Etiam viverra quam in neque condimentum egestas. Nullam euismod massa vel dolor imperdiet viverra." : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mollis orci sed nibh accumsan vehicula. Pellentesque in ipsum enim. Sed a accumsan libero, vitae molestie dolor. Phasellus sapien lacus, blandit eget erat maximus, imperdiet rhoncus neque. Etiam viverra quam in neque condimentum egestas. Nullam euismod massa vel dolor imperdiet viverra."}</p>
                     </div>
-                    <img src={ Logo } alt="Logo"></img>
+                    <img id="slideImage" src={ Phone } alt="Logo"></img>
                 </div>
             </div>
             <div className="mp-bg-container">
                 <div className="mp-events" id="events">
-                    <h1 style={{ color: '#ffffff' }}>{isPortuguese ? "Próximos Eventos" : "Next Events"}</h1>
-                    <p>Currently, we are doing events every Wednesday. The meeting hour may vary from event to event. Here are the places we are currently available:</p>
-                    <ul>
-                        <li>Leiria</li>
-                        <li>Caldas da Rainha</li>
-                    </ul>
-                    <p>More information available soon!</p>
+                    <h1 style={{ color: '#ffffff' }}>{isPortuguese ? "Onde estamos?" : "Where are we?"}</h1>
+                    <div className="mp-events__card-container">
+                        <LocationCard location="Leiria" img={Leiria}/>
+                        <LocationCard location="Caldas da Rainha" img={Fatima}/>
+                        <LocationCard location="Mais em breve..." img={Fatima}/>
+                    </div>
                 </div>
             </div>
             <div className="mp-tc" id="t&c">
@@ -144,8 +166,8 @@ function App() {
                 </span>
             </div>
             <div className="mp-downloads" id="downloads">
-                <span className="mp-downloads__big-txt">EXCITED TO TRY OUR APP?</span>
-                <span className="mp-downloads__mid-txt">WHAT ARE YOU WAITING FOR?</span>
+                <span className="mp-downloads__big-txt">{isPortuguese ? 'QUERES EXPERIMENTAR?' : 'EXCITED TO TRY OUR APP?' }</span>
+                <span className="mp-downloads__mid-txt">{isPortuguese ? 'ESTÁS À ESPERA DO QUÊ?' : 'WHAT ARE YOU WAITING FOR?' }</span>
                 <div className="mp-downloads__btn-container">
                     <a className="mp-downloads__button" href="https://www.apple.com/pt/app-store/" target="__blank">
                         <img src={AppStoreBtn} alt="AppStore"></img>
