@@ -122,7 +122,7 @@
 .mp-events {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
   padding-top: 90px;
   padding-bottom: 30px;
   padding-inline: 100px;
@@ -137,6 +137,20 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 24px;
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+
+    &--image {
+      height: 30vh;
+      object-fit: cover;
+    }
+
+    &--button {
+      align-self: flex-end;
+    }
   }
 }
 
