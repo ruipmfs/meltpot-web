@@ -16,7 +16,6 @@ import Leiria from "./assets/leiria.png";
 import Caldas from "./assets/caldas.png";
 import More from "./assets/more.jpg";
 import { Card } from "primereact/card";
-import { Button } from "primereact/button";
 import { Accordion } from "primereact/accordion";
 import { AccordionTab } from "primereact/accordion";
 

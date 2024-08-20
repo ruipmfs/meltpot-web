@@ -68,6 +68,7 @@ export const DeleteAccount = () => {
       toast.current.show({
         severity: "error",
         summary: "Failed",
+        // @ts-ignore
         detail: `${err?.response?.data?.message ?? "Try again later"}`,
         life: 3000,
       });
