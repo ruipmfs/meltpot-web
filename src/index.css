@@ -1,7 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Oranienbaum&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Oranienbaum&display=swap");
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif, 'Kaushan Script', 'Oranienbaum', cursive;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif,
+    "Kaushan Script", "Oranienbaum", cursive;
   line-height: 1.5;
   font-weight: 400;
 

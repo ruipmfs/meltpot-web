@@ -12,7 +12,7 @@
 
   &__image {
     margin-left: 20px;
-    display:flex;
+    display: flex;
     > img {
       height: 60px;
       width: auto;
@@ -81,7 +81,6 @@
     font-weight: normal;
     align-self: center;
     padding-right: 3%;
-
 
     &--selected {
       font-weight: bolder;

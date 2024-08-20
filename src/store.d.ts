@@ -1,5 +1,5 @@
-declare module './store' {
-    export interface RootState {
-        isPortuguese: boolean;
-    }
+declare module "./store" {
+  export interface RootState {
+    isPortuguese: boolean;
+  }
 }

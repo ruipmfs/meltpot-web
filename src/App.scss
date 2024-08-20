@@ -66,7 +66,7 @@
 
   &__container {
     display: grid;
-    grid-template-columns: 1fr .2fr;
+    grid-template-columns: 1fr 0.2fr;
     gap: 50px;
 
     &--text {
@@ -116,7 +116,7 @@
 }
 
 .mp-bg-container {
-  background-color: #FF8A00;
+  background-color: #ff8a00;
 }
 
 .mp-events {
@@ -146,6 +146,10 @@
     &--image {
       height: 30vh;
       object-fit: cover;
+    }
+
+    &--text {
+      text-align: justify;
     }
 
     &--button {
@@ -184,8 +188,7 @@
 
       &__unit {
         display: flex;
-        gap:8px;
-
+        gap: 8px;
       }
     }
     &--social {
@@ -220,7 +223,7 @@
   }
 
   > p {
-    color:black;
+    color: black;
   }
 }
 
@@ -279,15 +282,16 @@
 #slideImage {
   //width: 50%;
   opacity: 0;
- //transform: translateX(100%);
-  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  //transform: translateX(100%);
+  transition:
+    transform 0.5s ease-in-out,
+    opacity 0.5s ease-in-out;
 }
 
 #slideImage.visible {
   //transform: translateX(0%);
   opacity: 1;
 }
-
 
 @media (min-aspect-ratio: 16/9) {
   .mp-homepage__background-vid {
@@ -319,12 +323,12 @@
       grid-template-columns: 1fr;
       grid-template-rows: 1fr 1fr;
       margin: 0 10px;
-  
+
       > img {
         width: 100%;
         object-fit: contain;
       }
-  
+
       > span {
         color: black;
         width: 100%;
@@ -358,11 +362,11 @@
       grid-template-columns: 1fr;
       grid-template-rows: 0.1fr 1fr 1fr;
       gap: 32px;
-  
+
       > h1 {
         grid-column: span 1;
       }
-  
+
       &-unit {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -371,46 +375,48 @@
         padding: 10px;
         border-radius: 8px;
         background-color: white;
-        box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
-  
+        box-shadow:
+          rgba(17, 17, 26, 0.05) 0px 1px 0px,
+          rgba(17, 17, 26, 0.1) 0px 0px 8px;
+
         &--title {
           color: black;
           grid-column: span 2;
           border-bottom: 2px solid #e3e3e3;
           margin: 0;
         }
-  
+
         &--topics {
           color: black;
           padding-left: 20px;
           grid-column: span 2;
           font-weight: 500;
         }
-  
+
         &--description {
           color: black;
           font-size: small;
           grid-column: span 2;
         }
-  
+
         &--price {
           display: flex;
           flex-direction: column;
           color: gray;
           align-items: center;
-  
+
           > h3 {
             margin: 0;
           }
         }
-  
+
         &--button {
           display: flex;
           flex-direction: column;
           align-items: flex-end;
           justify-content: center;
           margin-right: 20px;
-  
+
           > a {
             border-radius: 4px;
             color: white;
@@ -448,7 +454,7 @@
     &-container {
       grid-template-columns: 1fr;
       grid-template-rows: 1fr 1fr 1fr;
-      gap:20px;
+      gap: 20px;
     }
   }
 }
