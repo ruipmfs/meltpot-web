@@ -359,7 +359,7 @@ function App() {
           </a>
           <a
             className="mp-downloads__button"
-            href="https://play.google.com/store/games?device=windows"
+            href="https://play.google.com/store/apps/details?id=pt.meltpot.meltpotapp"
             target="__blank"
           >
             <img src={PlayStoreBtn} alt="PlayStore"></img>
