@@ -2,7 +2,7 @@ import "./App.scss";
 import BackgroundVid from "./assets/background-vid.mp4";
 import Phone from "./assets/phone_frame.png";
 import DripImg from "./assets/drip.png";
-import QRCode from "./assets/mp_qr_code.png";
+import QRCode from "./assets/qr-code.png";
 import AppStoreBtn from "./assets/app-store-badge.png";
 import PlayStoreBtn from "./assets/google-play-badge.png";
 import Header from "./components/Header";
