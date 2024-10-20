@@ -8,6 +8,7 @@ import { RouterProvider, createHashRouter } from "react-router-dom";
 import { DeleteAccount } from "./DeleteAccount/DeleteAccount";
 import { PrimeReactProvider } from "primereact/api";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
+import {QrCodeRedirect} from "./QrCodeRedirect/QrCodeRedirect";
 
 const router = createHashRouter([
   {
@@ -17,6 +18,10 @@ const router = createHashRouter([
   {
     path: "/delete-account",
     element: <DeleteAccount />,
+  },
+  {
+    path: "/qr-code",
+    element: <QrCodeRedirect />,
   },
   {
     path: "*",

@@ -44,20 +44,6 @@ function App() {
 
   window.addEventListener("scroll", checkIsScrolled);
 
-  const image = document.getElementById("slideImage");
-
-  window.addEventListener("scroll", function () {
-    const imagePosition = image?.getBoundingClientRect().top;
-    const screenPosition = window.innerHeight;
-    console.log("image pos", imagePosition);
-    console.log("screen pos", screenPosition);
-    console.log("scroll pos", window.scrollY);
-
-    if ((imagePosition ?? 0) < window.scrollY) {
-      image?.classList.add("visible");
-    }
-  });
-
   const cardFooter = (
     <>
       <a className="mp-events__card--button p-button p-button-secondary" href="#downloads">
@@ -98,7 +84,7 @@ function App() {
                     fontSize: isMobile ? "200%" : "500%",
                   }}
                   sequence={[
-                    `Tu,\n5 Desconhecidos,\n1 Café,\nDo que estás à espera?`,
+                    `Tu,\nDesconhecidos,\nCafés,\nDo que estás à espera?`,
                     2000,
                     "",
                   ]}
@@ -116,7 +102,7 @@ function App() {
                     fontSize: isMobile ? "200%" : "500%",
                   }}
                   sequence={[
-                    `You,\n5 Strangers,\n1 Coffee Spot,\nWhat are you waiting for?`,
+                    `You,\nStrangers,\nCoffee Spots,\nWhat are you waiting for?`,
                     2000,
                     "",
                   ]}
@@ -165,9 +151,9 @@ function App() {
           <div className="mp-events__card-container">
             <Card
               title="Leiria"
-              subTitle={
+              /*subTitle={
                 isPortuguese ? "Todas as quarta-feiras" : "Every wednesday"
-              }
+              }*/
               footer={cardFooter}
               header={() => cardHeader(Leiria)}
               className="md:w-25rem"
@@ -180,7 +166,7 @@ function App() {
             </Card>
             <Card
               title="Caldas da Rainha"
-              subTitle={isPortuguese ? "Todas as sexta-feiras" : "Every friday"}
+              /*subTitle={isPortuguese ? "Todas as sexta-feiras" : "Every friday"}*/
               footer={cardFooter}
               header={() => cardHeader(Caldas)}
               className="md:w-25rem"
@@ -194,7 +180,7 @@ function App() {
             <Card
                 className="mp-events__card"
               title={isPortuguese ? "Em breve" : "Coming soon"}
-              subTitle={isPortuguese ? "Fica atendo" : "Stay aware"}
+              /*subTitle={isPortuguese ? "Fica atendo" : "Stay aware"}*/
               header={() => cardHeader(More)}
             >
               <p className="m-0 mp-events__card--text">
@@ -209,8 +195,8 @@ function App() {
         <h1>{isPortuguese ? "Termos & Condições" : "Terms and Conditions"}</h1>
         <span style={{ color: "black" }}>
           {isPortuguese
-            ? "Bem-vindo ao site do Meltpot. Este site é propriedade e gerido pelo Meltpot Unipessoal., uma empresa registada em Leiria, Portugal (NIF XXX-XXX-XXX). Ao utilizar o nosso site, o utilizador aceita as seguintes condições:"
-            : "Welcome to Meltpot. This site is owned and operated by Meltpot Unipessoal, a company registered in Leiria, Portugal (NIF XXX-XXX-XXX), with its registered office at Leiria. By using our site, you agree to the following terms and conditions."}
+            ? "Bem-vindo ao site do Meltpot. Ao utilizar o nosso site, o utilizador aceita as seguintes condições:" // Este site é propriedade e gerido pelo Meltpot Unipessoal., uma empresa registada em Leiria, Portugal (NIF XXX-XXX-XXX).
+            : "Welcome to Meltpot. By using our site, you agree to the following terms and conditions." /*This site is owned and operated by Meltpot Unipessoal, a company registered in Leiria, Portugal (NIF XXX-XXX-XXX), with its registered office at Leiria.*/}
         </span>
         <br />
         <Accordion activeIndex={-1}>
@@ -218,29 +204,53 @@ function App() {
             header={
               isPortuguese
                 ? "Inscrições e reservas"
-                : "Registrations and Reservations"
+                : "Registrations and reservations"
             }
           >
-            <p className="m-0">
-              {isPortuguese
-                ? "As inscrições para os eventos abrem todas as quintas-feiras de manhã para a quarta-feira da semana seguinte e encerram na segunda-feira às 13 horas. As inscrições para os eventos só são aceites através da App do Meltpot; as inscrições efectuadas através de outras plataformas serão recusadas."
-                : "Registrations for events open every Tuesday morning for the Wednesday of the following week and close on Monday at 11:59 PM. Registrations for events are only accepted through Meltpot app; registrations made through other platforms will be refused."}
-            </p>
+            {isPortuguese ?
+              <ul className="m-0">
+                <li>As inscrições para os eventos são aceites exclusivamente através da aplicação Meltpot. Registos efetuados através de outras plataformas serão recusados.</li>
+                <li>Ao registar-se num evento, o utilizador concorda em cumprir os termos descritos neste acordo. Se não puder comparecer, é da sua responsabilidade cancelar o registo antes do início do evento.</li>
+              </ul>
+              :
+              <ul className="m-0">
+                <li>Event registrations are only accepted through the Meltpot app. Registrations made through other platforms will be refused.</li>
+                <li>By registering for an event, you agree to comply with the terms outlined in this agreement. If you cannot attend, it is your responsibility to cancel your registration before the event begins.</li>
+              </ul>
+            }
           </AccordionTab>
           <AccordionTab header={isPortuguese ? "Eventos" : "Events"}>
             <p className="m-0">
-              {isPortuguese
-                ? "Os eventos realizam-se todas as quartas-feiras às 21h00 e têm uma duração aproximada de duas horas. A morada exacta do estabelecimento é comunicada no dia do evento. Os participantes devem ser maiores de 18 anos e são responsáveis pelas suas próprias facturas. Reservamo-nos o direito de modificar os grupos algumas horas antes do evento para o bom desenrolar da experiência. Não nos responsabilizamos pelo que acontece no estabelecimento nem pelo montante da fatura a pagar. Os bilhetes para o evento comprados não são reembolsáveis."
-                : "Events are held every Wednesday at 9:00 PM and last approximately two hours. The exact address of the café or bar is communicated on the day of the event. Participants must be at least 18 years old and are responsible for their own bills. We reserve the right to modify the groups a few hours before the event for the smooth running of the experience. We are not responsible for what happens at the café or bar nor for the amount of the bill to be paid. Purchased dinner tickets are non-refundable."}
+              {isPortuguese ?
+                <>
+                  <ul className="m-0">
+                    <li>Os eventos são realizados em diferentes horários e locais, que serão comunicados aos participantes antes do evento.</li>
+                    <li>Os participantes devem ter, no mínimo, 18 anos para se registarem e participarem nos eventos.</li>
+                    <li>Os participantes são responsáveis pelo pagamento das suas próprias contas, incluindo qualquer comida ou bebida consumida durante o evento. A Meltpot não se responsabiliza por disputas ou discrepâncias relativas aos pagamentos efetuados no local do evento.</li>
+                    <li>Reservamo-nos o direito de modificar os grupos algumas horas antes do evento para o bom desenrolar da experiência.</li>
+                  </ul>
+                  <p><strong>Declaração:</strong> Não nos responsabilizamos pelo que acontece no estabelecimento nem pelo montante da fatura a pagar.</p>
+                </>
+                :
+                <>
+                  <ul className="m-0">
+                    <li>Events are held at various times and locations, which will be communicated to participants before the event.</li>
+                    <li>Participants must be at least 18 years old to register for and attend events.</li>
+                    <li>Participants are responsible for paying their own bills, including any food or drinks consumed during the event. Meltpot is not liable for any disputes or discrepancies regarding payments made at the event venue.</li>
+                    <li>Meltpot reserves the right to adjust group assignments shortly before the event to ensure a smooth experience.</li>
+                  </ul>
+                  <p><strong>Disclaimer:</strong> Meltpot is not responsible for what happens at the café or bar nor for the amount of the bill to be paid.</p>
+                </>
+              }
             </p>
           </AccordionTab>
-          <AccordionTab header={isPortuguese ? "Assinatura" : "Subscription"}>
+          {/*<AccordionTab header={isPortuguese ? "Assinatura" : "Subscription"}>
             <p className="m-0">
               {isPortuguese
                 ? "Cada subscrição é válida por 30 dias e é automaticamente renovável. Pode anular a sua assinatura a qualquer momento, até à véspera do 30º dia. Uma vez cobrada a taxa de subscrição, não será efectuado qualquer reembolso."
                 : "Each subscription is valid for 30 days and is automatically renewable. You can cancel your subscription at any time, up to the day before the 30th day. Once the subscription fee has been charged, no refunds will be issued."}
             </p>
-          </AccordionTab>
+          </AccordionTab>*/}
           <AccordionTab
             header={
               isPortuguese
@@ -249,16 +259,24 @@ function App() {
             }
           >
             <p className="m-0">
-              {isPortuguese
-                ? "O Meltpot reserva-se o direito de modificar estes termos e condições em qualquer altura sem aviso prévio."
-                : "Meltpot reserves the right to modify these terms and conditions at any time without prior notice."}
+              {isPortuguese ?
+                <ul className="m-0">
+                  <li>A Meltpot reserva-se o direito de modificar estes termos e condições a qualquer momento, sem aviso prévio. Quaisquer alterações entrarão em vigor imediatamente após serem publicadas na aplicação ou no nosso site.</li>
+                  <li>A utilização contínua da aplicação Meltpot após modificações nestes termos constituirá a sua aceitação dos termos revisados. Recomendamos que reveja periodicamente estes termos para se manter informado sobre quaisquer atualizações.</li>
+                </ul>
+              :
+                <ul className="m-0">
+                  <li>Meltpot reserves the right to modify these terms and conditions without prior notice. Any changes will take effect immediately upon being posted in the app or on our website.</li>
+                  <li>Continued use of the Meltpot app after modifications to these terms will constitute your acceptance of the revised terms. We encourage you to periodically review these terms to stay informed about any updates.</li>
+                </ul>
+              }
             </p>
           </AccordionTab>
-          <AccordionTab header={isPortuguese ? "Contactar-nos" : "Contact Us"}>
+          <AccordionTab header={isPortuguese ? "Contactar-nos" : "Contact us"}>
             <p className="m-0">
               {isPortuguese
-                ? "Se tiver alguma questão relacionada com os presentes termos e condições, contacte-nos através do endereço contact@meltpot.pt."
-                : "If you have any questions regarding these terms and conditions, please contact us at contact@meltpot.pt."}
+                ? <p>Se tiver alguma questão relacionada com os presentes termos e condições, contacte-nos através do endereço <a href="mailto:contact@meltpot.pt">contact@meltpot.pt</a></p>
+                : <p>If you have any questions regarding these terms and conditions, please contact us at <a href="mailto:contact@meltpot.pt">contact@meltpot.pt</a></p>}
             </p>
           </AccordionTab>
         </Accordion>
@@ -312,8 +330,8 @@ function App() {
           >
             <p className="m-0">
               {isPortuguese
-                ? "O utilizador tem o direito de solicitar uma cópia das informações que temos sobre si. Se pretender solicitar uma cópia de algumas ou de todas as suas informações pessoais, envie-nos um e-mail para contact@meltpot.pt."
-                : "You have the right to request a copy of the information that we hold about you. If you wish to request a copy of some or all of your personal information, please email us at contact@meltpot.pt."}
+                  ? <p>O utilizador tem o direito de solicitar uma cópia das informações que temos sobre si. Se pretender solicitar uma cópia de algumas ou de todas as suas informações pessoais, envie-nos um e-mail para <a href="mailto:contact@meltpot.pt">contact@meltpot.pt</a></p>
+                  : <p>You have the right to request a copy of the information that we hold about you. If you wish to request a copy of some or all of your personal information, please email us at <a href="mailto:contact@meltpot.pt">contact@meltpot.pt</a></p>}
             </p>
           </AccordionTab>
           <AccordionTab
@@ -329,13 +347,11 @@ function App() {
                 : "We keep our privacy policy under regular review and will post any updates on this web page"}
             </p>
           </AccordionTab>
-          <AccordionTab
-            header={isPortuguese ? "Como contactar-nos" : "How to contact us"}
-          >
+          <AccordionTab header={isPortuguese ? "Como contactar-nos" : "How to contact us"}>
             <p className="m-0">
               {isPortuguese
-                ? "Se tiver alguma dúvida sobre a nossa política de privacidade ou sobre as informações que temos sobre si, contacte-nos através do endereço contact@meltpot.pt."
-                : "If you have any questions about our privacy policy or the information we hold about you, please contact us at contact@meltpot.pt."}
+                  ? <p>Se tiver alguma dúvida sobre a nossa política de privacidade ou sobre as informações que temos sobre si, contacte-nos através do endereço <a href="mailto:contact@meltpot.pt">contact@meltpot.pt</a></p>
+                  : <p>If you have any questions about our privacy policy or the information we hold about you, please contact us at <a href="mailto:contact@meltpot.pt">contact@meltpot.pt</a></p>}
             </p>
           </AccordionTab>
         </Accordion>
@@ -352,7 +368,7 @@ function App() {
         <div className="mp-downloads__btn-container">
           <a
             className="mp-downloads__button"
-            href="https://www.apple.com/pt/app-store/"
+            href="https://apps.apple.com/pt/app/meltpot/id6651821277"
             target="__blank"
           >
             <img src={AppStoreBtn} alt="AppStore"></img>
